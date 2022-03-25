@@ -1,7 +1,9 @@
-glesys module for Caddy
+Glesys module for Caddy
 ===========================
 
-This package contains a DNS provider module for [Caddy](https://github.com/caddyserver/caddy). It can be used to manage DNS records with [glesys](https://glesys.se).
+This package contains a DNS provider module for [Caddy](https://github.com/caddyserver/caddy). 
+
+It can be used to manage DNS records with [Glesys](https://glesys.se).
 
 ## Caddy module name
 
