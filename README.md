@@ -48,18 +48,3 @@ To use this module for the ACME DNS challenge, [configure the ACME issuer in you
 }
 ```
 
-or with the Caddyfile:
-
-```
-# globally
-{
-	acme_dns provider_name ...
-}
-```
-
-```
-# one site
-tls {
-	dns provider_name ...
-}
-```
