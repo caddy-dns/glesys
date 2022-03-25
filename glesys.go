@@ -1,8 +1,6 @@
 package glesys
 
 import (
-	"log"
-
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
 	libdnsglesys "github.com/libdns/glesys"
@@ -12,7 +10,6 @@ import (
 type Provider struct{ *libdnsglesys.Provider }
 
 func init() {
-	log.Println("--- Init caddydns-glesys")
 	caddy.RegisterModule(Provider{})
 }
 
@@ -84,7 +81,6 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 	if p.Provider.ApiKey == "" {
 		return d.Err("missing API-Key")
 	}
-	log.Printf("Provider unmarshalled to %+v", p.Provider)
 	return nil
 }
 
