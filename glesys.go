@@ -25,25 +25,24 @@ func (Provider) CaddyModule() caddy.ModuleInfo {
 func (p *Provider) Provision(ctx caddy.Context) error {
 	repl := caddy.NewReplacer()
 
-	p.Provider.ApiKey = repl.ReplaceAll(p.Provider.ApiKey, "")
+	p.Provider.APIKey = repl.ReplaceAll(p.Provider.APIKey, "")
 	p.Provider.Project = repl.ReplaceAll(p.Provider.Project, "")
 	return nil
 }
 
 // UnmarshalCaddyfile sets up the DNS provider from Caddyfile tokens. Syntax:
 //
-// glesys [<project> api_key] {
-//     project <project/user>
-//     api_key <api_key>
-// }
-//
+//	glesys [<project> api_key] {
+//	    project <project/user>
+//	    api_key <api_key>
+//	}
 func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 	for d.Next() {
 		if d.NextArg() {
 			p.Provider.Project = d.Val()
 		}
 		if d.NextArg() {
-			p.Provider.ApiKey = d.Val()
+			p.Provider.APIKey = d.Val()
 		}
 		if d.NextArg() {
 			return d.ArgErr()
@@ -61,11 +60,11 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 					return d.ArgErr()
 				}
 			case "api_key":
-				if p.Provider.ApiKey != "" {
+				if p.Provider.APIKey != "" {
 					return d.Err("API-Key already set")
 				}
 				if d.NextArg() {
-					p.Provider.ApiKey = d.Val()
+					p.Provider.APIKey = d.Val()
 				}
 				if d.NextArg() {
 					return d.ArgErr()
@@ -78,7 +77,7 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 	if p.Provider.Project == "" {
 		return d.Err("missing Project")
 	}
-	if p.Provider.ApiKey == "" {
+	if p.Provider.APIKey == "" {
 		return d.Err("missing API-Key")
 	}
 	return nil
