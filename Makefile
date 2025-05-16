@@ -14,7 +14,7 @@ tidy:
 
 test:
 	@echo "Testing..."
-	go test -v -buildvcs -count=1 ./...
+	go test -buildvcs -count=1 ./...
 
 
 audit:
@@ -28,3 +28,12 @@ audit:
 	go run golang.org/x/vuln/cmd/govulncheck@latest ./...
 
 
+no-dirty:
+	@echo "checking for uncommitted changes..."
+	git diff --exit-code
+	git diff --cached --exit-code
+
+
+.PHONY: run
+run:
+	xcaddy run --envfile .env 
